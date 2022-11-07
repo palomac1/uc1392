@@ -89,6 +89,68 @@ for ($i=0; $i < 4; $i++) {
     echo("<br>");
 }
 
+echo("<br>");
+echo("<br>");
+
 // Final - Estruturas de repetição
 
+// Início2 - Declaração de uso de matrizes
+echo("<br>");
+$pessoas = array(
+    '4567WE'=>(['Well','Professor']),
+    '8910PA'=>(['Paloma','Castro']),
+    '1112EL'=>(['Ellen','Vieira']), 
+    '1314HE'=>(['Helen','Targino'])
+);
+if (isset($_GET['enviar'])){ //Se o usuário clicar no botão
+    $id_frm = $_GET['id'];
+    $nome_frm = $_GET['nome'];
+    $sobrenome_frm = $_GET['sobrenome'];
+    $pessoas += [$id_frm => ([$nome_frm, $sobrenome_frm])];
+}
+
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <!-- <meta http-equiv="refresh" content = "1"> -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <form action="#" method="get">
+            <label for="id">
+                Id
+                <input type="text"  name="id" placeholder="Entre com o ID" required >
+            </label><br>
+            <label for="nome">
+                Nome
+                <input type="text" name="nome" required >
+            </label><br>
+            <label for="descricao">
+               Sobrenome
+                <input type="text" name="sobrenome" >
+            </label><br>
+            <button type="submit" name="enviar" id="btn-enviar" >Enviar</button>
+        </form>
+
+        <table class="tabelinha">
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <tr>
+                <td>0123NA</td>
+                <td>Nathalia</td>
+                <td>Barros</td>
+            </tr>
+            <?php
+                foreach ($pessoas as $id => $nome) { ?>
+                <tr>
+                    <td><?php echo($id);?></td>
+                    <td><?php echo($nome[0]);?></td>
+                    <td><?php echo($nome[1]);?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </body>
+</html>

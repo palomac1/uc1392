@@ -1,8 +1,7 @@
-@import url();
-@import url('reset.css');
-
+@import url(reset.css);
 html{
-    font-family: 'Josefin Sans', sans-serif;
+    margin-left: 10px;
+    font-family: 'BarlowCondensed-Black';
 }
 
 h1{
@@ -31,3 +30,17 @@ div{
 #nome-empresa{
     color: #eff2f1;
 }
+
+.tabelinha th, td{
+    border: 0.5px solid #f4b942;
+    padding: 10px 20px 15px 5px;
+}
+
+.tabelinha{border: 2px solid #f4b942;}
+th{font-weight: 700;}
+input{margin-bottom: 10px;}
+
+#btn-enviar{
+    margin-bottom: 20px;
+}
+button{background-color: #8aa3f3;}
