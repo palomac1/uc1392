@@ -4,20 +4,23 @@ include('funcoes.php');
 
 $parcelas = array();
 $coeficiente = 0.0;
+
 if(isset($_POST['calcular']))
 {
     $capital = $_POST['capital'];
     $taxa    = $_POST['taxa'];
     $parcela = $_POST['parcela'];
     $coeficiente = parcelar(floatval($taxa), intval($parcela));
-    print_r($_POST);
-    $data = date('d/m/Y');
     $dias = 30;
+    $montante = $coeficiente*$capital*$parcela;
+
+   // $data = date('d/m/Y');
+
     for ($i=0; $i < $parcela; $i++) { 
-        $parcelas += ([($i+1),($coeficiente*floatval($capital)),date($data,strtotime('+30days'))]);    
-        $dias += 30; 
+        $parcelas[$i] = [($i+1).'ª',($coeficiente*floatval($capital)),new DateTime('+'.$dias. 'days')];
+        $dias += 30; //$dias = $dias + 30;
     }
-    print_r($parcelas);
+    //print_r($parcelas);
 }
 
 ?>
@@ -27,6 +30,7 @@ if(isset($_POST['calcular']))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Parcelamento</title>
 </head>
 <body>
@@ -39,15 +43,22 @@ if(isset($_POST['calcular']))
     </form>
     <br><hr>
     <?php if(count($parcelas)>0){?>
-        <h4>Valor da Capital: R$ <?php echo $capital; ?></h4>
-        <h4>Taxa de Juros: <?php echo $taxa; ?> %</h4>
-        <h4>Parcelas: <?php echo $parcela; ?> meses</h4>
-    <?php 
-        foreach ($parcelas as $valores) {
-            ?>
-                <h4><?php echo($valores[0]." R$ ". strval($valores[1])." - ".strval($valores[2]));?></h4>
-            <?php
-        }
-    } ?>
-
+        <h4>Valor da Capital: R$ <?php echo number_format($capital,2,',','.'); ?></h4><br>
+        <h4>Taxa de Juros: <?php echo number_format($taxa,2,',','.'); ?> %</h4><br>
+        <h4>Parcelas: <?php echo $parcela; ?> meses</h4><br>
+        <h4>Total do financiamento: R$ <?php echo number_format($montante,2,',','.'); ?></h4><br>
+    <table class="tabelinha">
+        <th>#</th>
+        <th>Valor</th>
+        <th>Vencimento</th>
+    <?php foreach ($parcelas as $valores) { ?>
+        <tr>
+            <td><?php echo($valores[0]);?> </td>
+            <td><?php echo number_format($valores[1],2,',','.'); ?></td>
+            <td><?php echo $valores[2]->format('d-m-Y');?></td>
+        </tr>
+      <?php }?>
+    </table>
+    <?php } ?>
 </body>
+</html>
