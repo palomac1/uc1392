@@ -10,7 +10,7 @@ if(isset($_POST['calcular']))
     $taxa    = $_POST['taxa'];
     $parcela = $_POST['parcela'];
     $coeficiente = parcelar(floatval($taxa), intval($parcela));
-print_r($_POST);
+    print_r($_POST);
     $data = date('d/m/Y');
     $dias = 30;
     for ($i=0; $i < $parcela; $i++) { 
@@ -20,8 +20,8 @@ print_r($_POST);
     print_r($parcelas);
 }
 
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -40,7 +40,7 @@ print_r($_POST);
     <br><hr>
     <?php if(count($parcelas)>0){?>
         <h4>Valor da Capital: R$ <?php echo $capital; ?></h4>
-        <h4>Taxa de juro: <?php echo $taxa; ?> %</h4>
+        <h4>Taxa de Juros: <?php echo $taxa; ?> %</h4>
         <h4>Parcelas: <?php echo $parcela; ?> meses</h4>
     <?php 
         foreach ($parcelas as $valores) {
