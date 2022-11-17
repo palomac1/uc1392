@@ -17,6 +17,8 @@ $num_linhas = $lista->rowCount();
 //     echo $linha['titulo'].'-'.$linha['lancamento'].'<br>';
 // } while ($linha = $lista->fetch());
 
+if(isset($_POST))
+
 ?>
 
 <!DOCTYPE html>

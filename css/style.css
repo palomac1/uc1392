@@ -19,12 +19,8 @@ h3{
     font-size: 1.6em;
 }
 
-div{
-    border: 3px solid #f4b942;
-}
-
 .container{
-    background-color: #4059AD;
+    background-color: #2e0053;
 }
 
 #nome-empresa{
@@ -43,4 +39,8 @@ input{margin-bottom: 10px;}
 #btn-enviar{
     margin-bottom: 20px;
 }
-button{background-color: #8aa3f3;}
+button{background-color: #c9d9fc;}
+
+.formulario{
+    background-color: #73e9f8;
+}
