@@ -81,4 +81,8 @@ if (isset($_POST['enviar'])) //Inserir ou Alterar
         </tbody>
     </table>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 0999c8ac513980c8d7dd49e49e3eeb190e9f30fe
