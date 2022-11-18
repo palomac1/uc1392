@@ -1,37 +1,37 @@
-<?php
+<?php 
 include 'conecta.php';
 
-//Cria a consulta sql
-$consulta = "select * from filme";
+// cria a consulta sql
+$consultaSql = "select * from filme";
 
-//Traz a lista completa dos dados
+// trazer a lista completa dos dados
 $lista = $pdo->query($consultaSql);
 
-//Separa os dados em linhas
-$linha = $lista->fetch();
-$num_row = $lista->rowCount();
+// separar os dados em linhas
+$row = $lista->fetch();
+$num_rows = $lista->rowCount();
 
-// echo'A consulta retornou <strong>'.$num_linhas.'</strong> filmes <br><br>';
+// echo 'A consulta retornou <strong>'.$num_linhas.'</strong> funcionarios <br>';
+// // print_r($linha);
 
-// do {
-//     echo $linha['titulo'].'-'.$linha['lancamento'].'<br>';
-// } while ($linha = $lista->fetch());
+// do{
+//     echo $linha['nome'].' - '.$linha['cpf'].'<br>';
+// } while($linha = $lista->fetch());
 
-if (isset($_POST['enviar'])) //Inserir ou Alterar
+if(isset($_POST['enviar']))
 {
     $titulo = $_POST['titulo'];
     $sinopse = $_POST['sinopse'];
     $lancamento = $_POST['lancamento'];
-    $origem = $_POST['origem'];
+    $pais_origem = $_POST['pais_origem'];
     $duracao = $_POST['duracao'];
     $preco = $_POST['preco'];
     $cod_classificacao = $_POST['cod-classificacao'];
-    $consulta = "insert filme (titulo,sinopse,lancamento,origem,duracao,preco,cod-classificacao) values ('$titulo','$sinopse','$lancamento','$origem','$duracao','$preco','$cod_classificacao')";
+    $consulta = "insert filme (titulo,sinopse,lancamento,pais_origem, duracao,preco,cod_classificacao) values ('$titulo','$sinopse','$lancamento','$pais_origem','$duracao','$preco','$cod_classificacao')";
     $resultado = $pdo->query($consulta);
     $_POST['enviar'] = null;
     header('location: filme.php');
 }
-
 
 ?>
 
@@ -40,70 +40,75 @@ if (isset($_POST['enviar'])) //Inserir ou Alterar
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes <?php echo $num_linhas ?></title>
+    <title>Filmes</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        td{
+            border-bottom: 1px solid purple;
+        }
+    </style>
 </head>
 <body>
+    <br>
     <section class="formulario">
         <form action="#" method="post">
             <div hidden>
                 <label for="cod-filme">
                     Código
-                    <input type="text" name="cod-cliente">
+                    <input type="text" name="cod-filme">
                 </label>
             </div>
             <div>
-                <br>
                 <label for="titulo">
-                    Título
-                    <input type="text" name="titulo" required>
+                    Titulo
+                <input type="textarea" name="titulo" required>
                 </label>
             </div>
             <div>
                 <label for="sinopse">
                     Sinopse
-                    <input type="text" name="sinopse" required>
+                <input type="text" name="sinopse">
                 </label>
             </div>
             <div>
                 <label for="lancamento">
-                     Lançamento
-                    <input type="number" name="lancamento" required>
+                    Lançamento
+                <input type="text" name="lancamento">
                 </label>
             </div>
             <div>
-                <label for="origem">
+                <label for="pais_origem">
                     País de Origem
-                    <input type="text" name="origem" required>
+                <input type="text" name="pais_origem">
                 </label>
             </div>
             <div>
                 <label for="duracao">
                     Duração
-                    <input type="text" name="duracao" required>
+                <input type="text" name="duracao">
                 </label>
             </div>
             <div>
                 <label for="preco">
                     Preço
-                    <input type="text" name="preco" required>
+                <input type="text" name="preco">
                 </label>
             </div>
             <div>
                 <label for="cod-classificacao">
-                    Classificação
-                    <input type="text" name="cod-classificacao" required>
+                    Classificação Indicativa
+                <input type="text" name="cod-classificacao">
                 </label>
             </div>
             <div>
                 <button type="submit" name="enviar">Enviar</button>
-              </div>
+            </div>
         </form>
     </section>
-    <br><br>
     <table>
+        <br><br>
         <thead>
-            <th>ID</th>
+            <th>Cod</th>
             <th>Título</th>
             <th>Sinopse</th>
             <th>Lançamento</th>
@@ -114,17 +119,17 @@ if (isset($_POST['enviar'])) //Inserir ou Alterar
         </thead>
         <tbody>
             <?php do { ?>
-                <tr>
+                <tr>                    
                     <td><?php echo $row['cod_filme'];?></td>
                     <td><?php echo $row['titulo'];?></td>
-                    <td><?php echo $row['sinopse'];?> </td>
+                    <td><?php echo $row['sinopse'];?></td>
                     <td><?php echo $row['lancamento'];?></td>
                     <td><?php echo $row['pais_origem'];?></td>
                     <td><?php echo $row['duracao'];?></td>
                     <td><?php echo $row['preco'];?></td>
                     <td><?php echo $row['cod_classificacao'];?></td>
                 </tr>
-            <?php } while ($linha = $lista->fetch()); ?>
+            <?php } while ($row = $lista->fetch())?>
         </tbody>
     </table>
 </body>

@@ -1,11 +1,12 @@
-@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('reset.css');
 html{
     margin-left: 10px;
-    font-family: 'Poor Story', cursive;
+    font-family: 'Raleway', sans-serif;
 }
 
 h1{
-    font-weight: 400;
+    font-weight: 700;
     font-size: 2em;
 }
 
@@ -20,27 +21,39 @@ h3{
 }
 
 .container{
-    background-color: #2e0053;
+    background-color: lightgray;
 }
 
 #nome-empresa{
-    color: #eff2f1;
+    color: brown;   
 }
 
 .tabelinha th, td{
-    border: 0.5px solid #f4b942;
-    padding: 10px 20px 15px 5px;
+    border: 0.5px solid rgb(78, 78, 78);
 }
 
-.tabelinha{border: 2px solid #f4b942;}
-th{font-weight: 700;}
-input{margin-bottom: 10px;}
+.tabelinha th, td{
+ padding:10px;
+}
 
+.tabelinha{
+    border: 2px solid;
+}
+
+th{
+    font-weight: 700;
+}
+
+input{margin-bottom: 10px;}
 #btn-enviar{
     margin-bottom: 20px;
 }
-button{background-color: #c9d9fc;}
 
 .formulario{
-    background-color: #73e9f8;
+    background-color: rgb(200, 232, 169);
+    padding: 15px;
+}
+
+h3{
+    margin-top: 20px;
 }
