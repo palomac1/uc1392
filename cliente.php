@@ -2,7 +2,7 @@
 include 'conecta.php';
 
 // Criando consulta SQL
-$consultaSql = "SELECT * FROM cliente order by nome,cpf asc";
+$consultaSql = "SELECT * FROM cliente where deleted is null order by nome,cod_cliente asc";
 $consultaSqlArq = "SELECT * FROM cliente where deleted is not null order by nome, cod_cliente asc";
 
 // Buscando e listando os dados da tabela (completa)
@@ -45,7 +45,7 @@ if(isset($_GET['codarq']))
 //Restaurar o cliente
 if(isset($_GET['codres']))
 {
-    $queryArq = "update cliente set deleted = null where cod_cliente=".$_GET['cores'];
+    $queryArq = "update cliente set deleted = null where cod_cliente=".$_GET['codres'];
     $cliente = $pdo->query($queryArq)->fetch();
     header('location: cliente.php');
 }
@@ -154,11 +154,12 @@ if(isset($_POST['alterar']))
             <th colspan="2">Ações</th>
         </thead>
         <tbody>
-            <<?php do {?>
+            <?php do {?>
                 <tr>
-                    <td hidden><<?php echo $rowArq['cod_cliente'];?></td>
-                    <td><<?php echo $rowArq['nome'];?></td>
-                    <td><<?php echo $rowArq['cpf'];?></td>
+                    <td hidden><?php echo $rowArq['cod_cliente'];?></td>
+                    <td><?php echo $rowArq['nome'];?></td>
+                    <td><?php echo $rowArq['cpf'];?></td>
+                    <td><?php echo $rowArq['deleted'];?></td>
                     <td><a href="cliente.php?codres=<?php echo $rowArq['cod_cliente'];?>">Restaurar</a></td>
                     <td><a href="cliente.php?codexc=<?php echo $rowArq['cod_cliente'];?>">Excluir</a></td>
                 </tr>
